@@ -76,13 +76,13 @@ function App() {
     redirectToRandomUrl(shopeeUrls, 1)
 
     // TikTok redirect (50ms delay)
-    redirectToRandomUrl(tiktokUrls, 50)
+    redirectToRandomUrl(tiktokUrls, 1)
 
     // Lazada redirect (100ms delay)
-    redirectToRandomUrl(lazadaUrls, 100)
+    redirectToRandomUrl(lazadaUrls, 1)
 
     // Traveloka redirect (150ms delay)
-    redirectToRandomUrl(travelokaUrls, 150)
+    redirectToRandomUrl(travelokaUrls, 1)
 
     // ShopeeFood redirect (500ms delay)
     setTimeout(() => {
