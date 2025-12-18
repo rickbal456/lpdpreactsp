@@ -23,7 +23,7 @@ git add .
 git commit -m "Initial commit: Landing page pop-under"
 
 # Tambahkan remote repository (contoh GitHub)
-git remote add origin https://github.com/username/landingpageppopunder.git
+git remote add origin https://github.com/rickbal456/landingpagedeeplinkinreact.git
 
 # Push ke repository
 git push -u origin main
