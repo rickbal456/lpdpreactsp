@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import shopeeData from '../json/data-nav-ndr.json'
+import shopeeData from '../json/deeplink-shopee-react.json'
 
 function App() {
   const [redirecting, setRedirecting] = useState(true)
@@ -17,17 +17,13 @@ function App() {
     return ''
   }
 
-  // Shopee URLs - mengambil dari JSON file
+  // Shopee URLs - mengambil dari JSON file (format reactPath)
   const getShopeeUrls = () => {
     // Ambil data dari JSON dengan key "shopee-yt-android2"
-    const navRoutes = shopeeData['shopee-yt-android2'] || []
+    // JSON berisi link reactPath lengkap: shopeeid://reactPath?navigate_url=...
+    const reactPathUrls = shopeeData['shopee-deeplink'] || []
     
-    // Tambahkan prefix shopeeid://home?navRoute= ke setiap item
-    const baseUrls = navRoutes.map(navRoute => {
-      return `shopeeid://home?navRoute=${navRoute}`
-    })
-    
-    return baseUrls
+    return reactPathUrls
   }
 
   // TikTok URLs

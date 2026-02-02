@@ -1,0 +1,7 @@
+{
+    "_comment": "File konfigurasi deeplink Shopee format reactPath. Tambahkan link deeplink di array shopee-deeplink",
+    "_format": "shopeeid://reactPath?navigate_url={encoded_url}&path=shopee%2FTRANSFER_PAGE&tab=buy&...",
+    "shopee-deeplink": [
+        "shopeeid://reactPath?navigate_url=https%3A%2F%2Fshopee.co.id%2Fproduct%2F1191401907%2F23264980700%3Fgads_t_sig%3DVTJGc2RHVmtYMTlxTFVSVVRrdENkVHQ3ZkZSUTMrR3pBWmZZNzdrcnRBMUtObWlMR3c4d2ZRRmFYUkZMVU5WKzBPZ2VSb0tpTHk1QUkveWFlUk9adHdRcmc3RzFKRlBwaXhwL0Z2SzJPU3ZlMXIwK3ZrWHFTUk9HQlhOdFB0TWpKcTh5bHFUOFVjTTZBczR1QWc5NW0xMDNCS3Y2dzBBSHlkaDJCaDNWOEVZPQ%26mmp_pid%3Dan_11372880123%26uls_trackid%3D54as57lg00bf%26utm_campaign%3Did_Fl4Jg1kodD%26utm_content%3D----%26utm_medium%3Daffiliates%26utm_source%3Dan_11372880123%26utm_term%3De2i5u9uz8dsm&path=shopee%2FTRANSFER_PAGE&tab=buy&uls_trackid=54as57lg00bf&use_deeplink=1&utm_campaign=id_Fl4Jg1kodD&utm_content={clickid}---&utm_medium=affiliates&utm_source=an_11372880123&utm_term=e2i5u9uz8dsm&version=1"
+    ]
+}
