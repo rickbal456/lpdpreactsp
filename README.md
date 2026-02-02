@@ -54,8 +54,19 @@ vercel login
 vercel --prod
 ```
 
+## Deployment ke CyberPanel
+
+Untuk panduan lengkap deployment ke CyberPanel, lihat file [DEPLOY_CYBERPANEL.md](./DEPLOY_CYBERPANEL.md)
+
+### Quick Deploy
+
+1. Build aplikasi: `npm run build`
+2. Upload folder `dist/` ke `public_html` di CyberPanel
+3. Konfigurasi rewrite rules untuk SPA
+4. Issue SSL certificate
+
 ## File Konfigurasi
 
 - `vercel.json` - Konfigurasi untuk Vercel deployment
-- `DEPLOY_VERCEL.md` - Dokumentasi lengkap deployment
-
+- `DEPLOY_VERCEL.md` - Dokumentasi lengkap deployment ke Vercel
+- `DEPLOY_CYBERPANEL.md` - Dokumentasi lengkap deployment ke CyberPanel
