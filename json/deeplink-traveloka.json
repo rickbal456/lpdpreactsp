@@ -1,0 +1,10 @@
+{
+    "_comment": "File konfigurasi deeplink Traveloka. Tambahkan link deeplink di array traveloka-deeplink",
+    "_format": "traveloka://hotel/detail/spec?hotelId=...",
+    "traveloka-deeplink": [
+        "traveloka://hotel/detail/spec?hotelId=182137&checkInDate=16-12-2024&checkOutDate=17-12-2024&currency=IDR&totalRoom=1&totalGuest=2&utm_id=zuT2gU7O&referral-code=AFFILIATERICKBALPROGRAM&campaign-slug=affiliate-id&accessCode=c2creferral&contexts=contexts&utmId=zuT2gU7O",
+        "traveloka://hotel/detail/spec?hotelId=3000010038988&checkInDate=16-12-2024&checkOutDate=17-12-2024&currency=IDR&totalRoom=1&totalGuest=2&utm_id=zuT2gU7O&referral-code=AFFILIATERICKBALPROGRAM&campaign-slug=affiliate-id&accessCode=c2creferral&contexts=contexts&utmId=zuT2gU7O",
+        "traveloka://hotel/detail/spec?hotelId=3000010014429&checkInDate=16-12-2024&checkOutDate=17-12-2024&currency=IDR&totalRoom=1&totalGuest=1&utm_id=zuT2gU7O&referral-code=AFFILIATERICKBALPROGRAM&campaign-slug=affiliate-id&accessCode=c2creferral&contexts=contexts&utmId=zuT2gU7O",
+        "traveloka://hotel/detail/spec?hotelId=297294&checkInDate=16-12-2024&checkOutDate=17-12-2024&currency=IDR&totalRoom=1&totalGuest=2&utm_id=zuT2gU7O&referral-code=AFFILIATERICKBALPROGRAM&campaign-slug=affiliate-id&accessCode=c2creferral&contexts=contexts&utmId=zuT2gU7O"
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "_comment": "File konfigurasi deeplink ShopeeFood. Tambahkan link deeplink di array shopeefood-deeplink",
+    "_format": "https://spf.shopee.co.id/...",
+    "shopeefood-deeplink": [
+        "https://spf.shopee.co.id/4VVGTTFgTU"
+    ]
+}

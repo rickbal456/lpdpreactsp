@@ -1,0 +1,24 @@
+{
+    "_comment": "Konfigurasi pengaturan redirect untuk semua platform. Edit file ini untuk mengatur delay dan mengaktifkan/menonaktifkan redirect.",
+    
+    "shopee": {
+        "enabled": true,
+        "delay": 1
+    },
+    "tiktok": {
+        "enabled": true,
+        "delay": 1
+    },
+    "lazada": {
+        "enabled": true,
+        "delay": 1
+    },
+    "traveloka": {
+        "enabled": true,
+        "delay": 1
+    },
+    "shopeefood": {
+        "enabled": true,
+        "delay": 1
+    }
+}

@@ -1,12 +1,34 @@
 # Panduan Deploy ke Vercel
 
-Dokumentasi lengkap untuk deploy landing page pop-under ke Vercel.
+Dokumentasi lengkap untuk deploy landing page deeplink ke Vercel.
+
+> **Update Terakhir**: 2 Februari 2026
 
 ## Prasyarat
 
 1. Akun Vercel (gratis di [vercel.com](https://vercel.com))
 2. Git repository (GitHub, GitLab, atau Bitbucket)
 3. Node.js terinstall di local (untuk testing)
+
+---
+
+## Struktur File Konfigurasi
+
+Sebelum deploy, pastikan semua file konfigurasi sudah benar:
+
+```
+json/
+├── pengaturan-redirect.json      # Pengaturan enable/disable & delay
+├── deeplink-shopee-react.json    # Deeplink Shopee (reactPath)
+├── deeplink-tiktok.json          # Deeplink TikTok Shop
+├── deeplink-lazada.json          # Deeplink Lazada
+├── deeplink-traveloka.json       # Deeplink Traveloka
+└── deeplink-shopeefood.json      # Deeplink ShopeeFood
+```
+
+> **Catatan**: File JSON ini akan di-bundle saat build, jadi tidak ada file terpisah yang perlu di-upload.
+
+---
 
 ## Metode 1: Deploy via Vercel Dashboard (Recommended)
 
@@ -20,10 +42,10 @@ git init
 git add .
 
 # Commit
-git commit -m "Initial commit: Landing page pop-under"
+git commit -m "Initial commit: Landing page deeplink"
 
-# Tambahkan remote repository (contoh GitHub)
-git remote add origin https://github.com/rickbal456/landingpagedeeplinkinreact.git
+# Tambahkan remote repository
+git remote add origin https://github.com/username/repo.git
 
 # Push ke repository
 git push -u origin main
@@ -52,6 +74,8 @@ Vercel biasanya auto-detect, tapi pastikan:
 2. Tunggu proses build selesai (biasanya 1-2 menit)
 3. Setelah selesai, dapatkan URL production
 
+---
+
 ## Metode 2: Deploy via Vercel CLI
 
 ### Install Vercel CLI
@@ -76,59 +100,81 @@ vercel
 vercel --prod
 ```
 
-## Konfigurasi Khusus
+---
 
-### File vercel.json (Opsional)
+## Update Deeplink Setelah Deploy
 
-Buat file `vercel.json` di root project untuk konfigurasi tambahan:
+### Cara Update Deeplink
+
+1. Edit file JSON di folder `json/` sesuai kebutuhan
+2. Commit dan push perubahan
+
+```bash
+git add json/
+git commit -m "Update deeplink configuration"
+git push
+```
+
+3. Vercel akan otomatis redeploy
+
+### Contoh: Menonaktifkan TikTok
+
+Edit `json/pengaturan-redirect.json`:
 
 ```json
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
-    }
-  ]
+  "tiktok": {
+    "enabled": false,
+    "delay": 1
+  }
 }
 ```
 
-### Environment Variables (Jika Diperlukan)
+Lalu commit dan push.
 
-Jika ada environment variables:
+---
+
+## Konfigurasi Khusus
+
+### File vercel.json
+
+Project sudah memiliki `vercel.json` untuk konfigurasi SPA routing:
+
+```json
+{
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+```
+
+### Custom Domain (Opsional)
 
 1. Buka project di Vercel Dashboard
-2. Go to **Settings** → **Environment Variables**
-3. Tambahkan variables yang diperlukan
+2. Go to **Settings** → **Domains**
+3. Tambahkan domain Anda
+4. Ikuti instruksi untuk setup DNS
+
+---
+
+## Troubleshooting
+
+### Redirect Tidak Bekerja
+
+- Pastikan file `json/pengaturan-redirect.json` memiliki `"enabled": true`
+- Pastikan array deeplink tidak kosong di file JSON masing-masing platform
+- Check browser console untuk error
+
+### 404 Error
+
+- Pastikan `vercel.json` memiliki routing untuk SPA
+- Atau gunakan konfigurasi routing di Vercel Dashboard
+
+### Deeplink Tidak Terupdate
+
+- Pastikan sudah commit dan push perubahan
+- Tunggu Vercel selesai redeploy (lihat di Dashboard)
+- Clear browser cache
+
+---
 
 ## Testing Setelah Deploy
 
@@ -137,67 +183,17 @@ Setelah deploy selesai, test dengan:
 1. **URL Production:** `https://your-project.vercel.app`
 2. **Dengan Parameter:** `https://your-project.vercel.app/?clickid=test123`
 
-## Custom Domain (Opsional)
+---
 
-### Setup Custom Domain
+## Checklist Sebelum Deploy
 
-1. Buka project di Vercel Dashboard
-2. Go to **Settings** → **Domains**
-3. Tambahkan domain Anda
-4. Ikuti instruksi untuk setup DNS
+- [ ] Semua file JSON deeplink sudah diisi dengan benar
+- [ ] `pengaturan-redirect.json` sudah dikonfigurasi sesuai kebutuhan
+- [ ] Code sudah di-push ke Git repository
+- [ ] Test build lokal dengan `npm run build`
+- [ ] Semua URL deeplink sudah valid
 
-### DNS Configuration
-
-Tambahkan record berikut di DNS provider:
-
-- **Type:** CNAME
-- **Name:** `@` atau `www`
-- **Value:** `cname.vercel-dns.com`
-
-## Troubleshooting
-
-### Build Fails
-
-**Error:** Build command failed
-
-**Solusi:**
-- Pastikan `package.json` memiliki script `build`
-- Check Node.js version (Vercel menggunakan Node 18.x default)
-- Lihat build logs di Vercel Dashboard
-
-### Redirect Tidak Bekerja
-
-**Error:** Redirect tidak berfungsi di production
-
-**Solusi:**
-- Pastikan semua URL menggunakan protocol lengkap (`https://`)
-- Check browser console untuk error
-- Pastikan deep links valid
-
-### 404 Error
-
-**Error:** Halaman tidak ditemukan saat refresh
-
-**Solusi:**
-- Pastikan `vercel.json` memiliki routing untuk SPA
-- Atau gunakan konfigurasi routing di Vercel Dashboard
-
-## Monitoring & Analytics
-
-### Vercel Analytics
-
-1. Buka project di Vercel Dashboard
-2. Go to **Analytics** tab
-3. Enable analytics untuk tracking
-
-### Custom Analytics
-
-Tambahkan tracking code di `index.html` jika diperlukan:
-
-```html
-<!-- Google Analytics contoh -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=GA_ID"></script>
-```
+---
 
 ## Update Deployment
 
@@ -215,30 +211,13 @@ vercel --prod
 # Klik "Redeploy" di Vercel Dashboard
 ```
 
-## Best Practices
+---
 
-1. **Environment Variables:** Jangan commit sensitive data
-2. **Build Optimization:** Pastikan build size optimal
-3. **Caching:** Vercel otomatis cache static assets
-4. **HTTPS:** Vercel otomatis provide SSL certificate
-5. **Performance:** Monitor Core Web Vitals di Analytics
-
-## Support
+## Referensi
 
 - **Vercel Docs:** [vercel.com/docs](https://vercel.com/docs)
-- **Vercel Discord:** [vercel.com/discord](https://vercel.com/discord)
-- **GitHub Issues:** Buat issue di repository project
-
-## Checklist Sebelum Deploy
-
-- [ ] Code sudah di-push ke Git repository
-- [ ] `package.json` memiliki script `build`
-- [ ] Test build lokal dengan `npm run build`
-- [ ] Semua URL redirect sudah valid
-- [ ] Environment variables sudah di-set (jika ada)
-- [ ] Custom domain sudah di-setup (jika ada)
+- **Vite Deployment:** [vitejs.dev/guide/static-deploy](https://vitejs.dev/guide/static-deploy.html)
 
 ---
 
-**Selamat!** Landing page Anda sudah siap di production! 🚀
-
+**Selamat!** Landing page deeplink Anda sudah siap di production! 🚀
